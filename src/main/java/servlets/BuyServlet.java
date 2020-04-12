@@ -3,19 +3,15 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.appengine.api.blobstore.BlobInfo;
-import com.google.appengine.api.blobstore.BlobInfoFactory;
-import com.google.appengine.api.blobstore.BlobKey;
-import com.google.appengine.api.blobstore.BlobstoreService;
-import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
-import com.google.appengine.api.images.ImagesService;
-import com.google.appengine.api.images.ImagesServiceFactory;
-import com.google.appengine.api.images.ServingUrlOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,65 +21,50 @@ import javax.servlet.http.HttpServletResponse;
 public class BuyServlet extends HttpServlet {
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-    response.getWriter().println("<h1>This is the buy page.</h1>");	    
-    String uploadUrl = blobstoreService.createUploadUrl("/buy");
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {    
     response.setContentType("text/html");
-    response.getWriter().println(uploadUrl);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    UserService userService = UserServiceFactory.getUserService();
-
-    // if (!userService.isUserLoggedIn()) {
-    //   response.sendRedirect("/");
-    //   return;
-    // }
-
-    boolean sold = false;
-    Double price = Double.valueOf(request.getParameter("price"));
-    String image = getUploadedFileUrl(request, "image");
-    long timestamp = System.currentTimeMillis();
-    String title = request.getParameter("title");
-    String description = request.getParameter("description");
-    // String userId = userService.getCurrentUser().getUserId();
-
-    Entity listing = new Entity("Listing");
-    listing.setProperty("sold", sold);
-    listing.setProperty("price", price);
-    listing.setProperty("image", image);
-    listing.setProperty("timestamp", timestamp);
-    listing.setProperty("title", title);
-    listing.setProperty("description", description);
-    // listing.setProperty("userId", userId);
-
+    PrintWriter out = response.getWriter();
+    out.println("<h1>This is the buy page.</h1>");
+    
+    // UserService userService = UserServiceFactory.getUserService();
+    // if (userService.isUserLoggedIn())
+    // else { String loginUrl = userService.createLoginURL...}
+    
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(listing);
+    Query query = new Query("Listing").addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+    
+    // UNCOMMENT ONCE WE KNOW DATASTORE WORKS
+    // for (Entity entity : results.asIterable()) {
+    //   boolean sold = entity.getProperty("sold");
+    //   Double price = entity.getProperty("price");
+    //   String image = entity.getProperty("image");
+    //   long timestamp = entity.getProperty("timestamp");
+    //   String title = entity.getProperty("title");
+    //   String description = entity.getProperty("description"); 
+      
+    //   out.println("<div>");
+    //   out.println("<p>Sold: " + sold + "</p>");
+    //   out.println("<p>Price: " + price + "</p>");
+    //   out.println("<p>Image: " + image + "</p>");
+    //   out.println("<p>Timestamp: " + timestamp + "</p>");
+    //   out.println("<p>Title: " + title + "</p>");
+    //   out.println("</div>");
 
-    response.sendRedirect("/index.html");
-  }
-
-  private String getUploadedFileUrl(HttpServletRequest request, String formInputElementName) {
-    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-    Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
-    List<BlobKey> blobKeys = blobs.get("image");
-
-    if (blobKeys == null || blobKeys.isEmpty()) {
-      return null;
-    }
-
-    BlobKey blobKey = blobKeys.get(0);
-
-    BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
-    if (blobInfo.getSize() == 0) {
-      blobstoreService.delete(blobKey);
-      return null;
-    }
-
-    ImagesService imagesService = ImagesServiceFactory.getImagesService();
-    ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
-    return imagesService.getServingUrl(options);
+    // }
+    boolean sold = true;
+    Double price = 10.00;
+    String image = "stub";
+    long timestamp = 10;
+    String title = "stub";
+    String description = "stub"; 
+    
+    out.println("<div>");
+    out.println("<p>Sold: " + sold + "</p>");
+    out.println("<p>Price: " + price + "</p>");
+    out.println("<p>Image: " + image + "</p>");
+    out.println("<p>Timestamp: " + timestamp + "</p>");
+    out.println("<p>Title: " + title + "</p>");
+    out.println("</div>");
   }
 } 
