@@ -28,15 +28,3 @@ function initAutocomplete() {
     });
   });
 }
-
-function validateAddress() {
-  let geocoder = new google.maps.Geocoder();
-  const address = document.getElementById('location').value;
-  geocoder.geocode({'address': address}, function(results, status) {
-    if (status === 'OK') {
-      document.getElementById('location').value = JSON.stringify(results[0].geometry.location);
-    } else {
-      alert('Please enter a valid address');
-    }
-  });
-}
