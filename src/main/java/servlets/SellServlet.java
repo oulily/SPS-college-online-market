@@ -44,8 +44,8 @@ public class SellServlet extends HttpServlet {
 
     boolean sold = false;
     Double price = Double.valueOf(request.getParameter("price"));
-    String location = request.getParameter("location");
-    String image = getUploadedFileUrl(request, "image");
+    String location = request.getParameter("location"); // JSON string in {lat, lng} form
+    String image = getUploadedFileUrl(request, "image"); // image url
     long timestamp = System.currentTimeMillis();
     String title = request.getParameter("title");
     String description = request.getParameter("description");
