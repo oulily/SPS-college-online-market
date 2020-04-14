@@ -44,6 +44,7 @@ public class SellServlet extends HttpServlet {
 
     boolean sold = false;
     Double price = Double.valueOf(request.getParameter("price"));
+    String location = request.getParameter("location");
     String image = getUploadedFileUrl(request, "image");
     long timestamp = System.currentTimeMillis();
     String title = request.getParameter("title");
@@ -53,6 +54,7 @@ public class SellServlet extends HttpServlet {
     Entity listing = new Entity("Listing");
     listing.setProperty("sold", sold);
     listing.setProperty("price", price);
+    listing.setProperty("location", location);
     listing.setProperty("image", image);
     listing.setProperty("timestamp", timestamp);
     listing.setProperty("title", title);

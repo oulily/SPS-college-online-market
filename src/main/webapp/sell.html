@@ -16,6 +16,9 @@
       <label for="price">Price:</label>
       <input type="number" name="price" required /> 
       <br>
+      <label for="location">Location:</label>
+      <input id="location" placeholder="" type="text" name="location" required />
+      <br>
       <label for="image">Image:</label>
       <input type="file" name="image">
       <br>
@@ -25,5 +28,6 @@
       <button>Post</button>
     </form>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3PvtE6_5v9QSRDNF0wm22TFSaiRNurmU&libraries=places&callback=initAutocomplete" async defer></script>
   </body>
 </html>
