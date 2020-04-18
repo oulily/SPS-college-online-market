@@ -6,18 +6,9 @@
     <link rel="stylesheet" href="./stylesheets/index.css">
     <script src="./javascript/index.js"></script>
   </head>
-  <body onload="loadComments()">
+  <body>
     <div style="text-align:center">
       <header>
-          <div>
-              <ul class="list">
-                  <li><a href="/index.html">Home</a></li>
-                  <li><a href="/buy.html">Buy</a></li>
-                  <li><a href="/sell.html">Sell</a></li>
-                  <li><a href="/account.html">Account</a></li>
-                  <li><a href="/login.html">Logout</a></li>
-              </ul>
-          </div>
           <div class="heading">
             <h1>COLLEGE ONLINE MARKET</h1>
           </div>
@@ -25,31 +16,9 @@
             <h1>THE PLACE TO BUY AND SELL ITEMS NEEDED BY COLLEGE STUDENTS</h1>
           </div>
           <div class="buttn">
-              <a href="/buy.html" class="btn">BUY</a>
-              <a href="/sell.html" class="btn">SELL</a>
+              <a href="/login.html" class="btn">LOGIN</a>
           </div>
       </header>
-      <div class="parallax"></div>
-      <div style="height:100px; background-color:white; color:gray; font-size:18px">
-        <h3>ABOUT</h3>
-        <p>
-          The website that allows college students to buy and sell items like textbooks, clothes, furniture, and so much more.
-          All you have to do is create an account and make a post to sell an item or scroll through current posts to buy an item.
-        </p>
-      </div>
-      <div class="parallax"></div>
-      <hr>
-      <form method="POST" action="/data">
-      <h1>COMMENT SECTION:</h1>
-      <input id="textbox" type="text" name="commentInput" />
-      <br/>
-      <button>SUBMIT</button>
-      </form>
-      </hr>
-      <hr>
-      <section>
-      <ul id="comment-list"></ul>
-      </section>
     </div>
   </body>
 </html>
