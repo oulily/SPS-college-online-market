@@ -25,6 +25,13 @@ public class BuyServlet extends HttpServlet {
     response.setContentType("text/html");
     PrintWriter out = response.getWriter();
     out.println("<h1>This is the buy page.</h1>");
+
+    out.println("<form action='/buy'>");
+    out.println("<div><h4 class='filter'>Filter by:</h4></div>");
+    out.println("<div><input type='checkbox'><label>School Supplies</label>");
+    out.println("<div><input type='checkbox'><label>Furniture</label>");
+    out.println("<div><input type='checkbox'><label>Miscellaneous</label>");
+    out.println("</form>");
     
     // UserService userService = UserServiceFactory.getUserService();
     // if (userService.isUserLoggedIn())
@@ -34,37 +41,22 @@ public class BuyServlet extends HttpServlet {
     Query query = new Query("Listing").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     
-    // UNCOMMENT ONCE WE KNOW DATASTORE WORKS
-    // for (Entity entity : results.asIterable()) {
-    //   boolean sold = entity.getProperty("sold");
-    //   Double price = entity.getProperty("price");
-    //   String image = entity.getProperty("image");
-    //   long timestamp = entity.getProperty("timestamp");
-    //   String title = entity.getProperty("title");
-    //   String description = entity.getProperty("description"); 
+    for (Entity entity : results.asIterable()) {
+      boolean sold = (boolean)entity.getProperty("sold");
+      Double price = (Double)entity.getProperty("price");
+      String image = (String)entity.getProperty("image");
+      long timestamp = (long)entity.getProperty("timestamp");
+      String title = (String)entity.getProperty("title");
+      String description = (String)entity.getProperty("description"); 
       
-    //   out.println("<div>");
-    //   out.println("<p>Sold: " + sold + "</p>");
-    //   out.println("<p>Price: " + price + "</p>");
-    //   out.println("<p>Image: " + image + "</p>");
-    //   out.println("<p>Timestamp: " + timestamp + "</p>");
-    //   out.println("<p>Title: " + title + "</p>");
-    //   out.println("</div>");
-
-    // }
-    boolean sold = true;
-    Double price = 10.00;
-    String image = "stub";
-    long timestamp = 10;
-    String title = "stub";
-    String description = "stub"; 
-    
-    out.println("<div>");
-    out.println("<p>Sold: " + sold + "</p>");
-    out.println("<p>Price: " + price + "</p>");
-    out.println("<p>Image: " + image + "</p>");
-    out.println("<p>Timestamp: " + timestamp + "</p>");
-    out.println("<p>Title: " + title + "</p>");
-    out.println("</div>");
+      out.println("<div>");
+      out.println("<p>Sold: " + sold + "</p>");
+      out.println("<p>Price: " + price + "</p>");
+      out.println("<p>Image: " + image + "</p>");
+      out.println("<p>Timestamp: " + timestamp + "</p>");
+      out.println("<p>Title: " + title + "</p>");
+      out.println("<p>Description: " + description + "</p>");
+      out.println("</div>");
+    }
   }
 } 
