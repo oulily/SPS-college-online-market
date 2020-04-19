@@ -63,7 +63,6 @@ public class SellServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(listing);
-
     response.sendRedirect("/home.html");
   }
 
