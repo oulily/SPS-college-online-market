@@ -4,6 +4,7 @@ function setupBlobstore() {
       return response.text();
     })
     .then((imageUploadUrl) => {
+<<<<<<< HEAD
       let listingForm = document.getElementById('listing-form');
       listingForm.action = imageUploadUrl;
     });
@@ -27,4 +28,9 @@ function initAutocomplete() {
       }
     });
   });
+=======
+      const listingForm = document.getElementById('listing-form');
+      listingForm.action = imageUploadUrl;
+    });
+>>>>>>> master
 }

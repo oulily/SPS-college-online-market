@@ -66,8 +66,5 @@ public class BuyServlet extends HttpServlet {
     out.println("<p>Timestamp: " + timestamp + "</p>");
     out.println("<p>Title: " + title + "</p>");
     out.println("</div>");
-
-    
   }
 } 
-

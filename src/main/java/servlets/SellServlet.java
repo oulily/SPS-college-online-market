@@ -63,12 +63,7 @@ public class SellServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(listing);
-
-    response.sendRedirect("/home.html");
-
-    if (sold == true) {
-        //send email notification to buyer && seller
-    }
+    response.sendRedirect("/index.html");
 
   }
 
