@@ -24,15 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/sell")
 public class SellServlet extends HttpServlet {
 
- @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-    String uploadUrl = blobstoreService.createUploadUrl("/sell");
-
-    response.setContentType("text/html");
-    response.getWriter().println(uploadUrl);
-  }
-
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
