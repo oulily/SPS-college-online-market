@@ -1,5 +1,5 @@
 function setupBlobstore() {
-  fetch('/sell')
+  fetch('/blobstore-url')
     .then((response) => {
       return response.text();
     })
@@ -27,9 +27,6 @@ function initAutocomplete() {
       }
     });
   });
-      let listingForm = document.getElementById('listing-form');
-      listingForm.action = imageUploadUrl;
-    });
 }
 
 function initAutocomplete() {

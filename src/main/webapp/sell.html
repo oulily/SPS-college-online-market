@@ -7,25 +7,25 @@
     <script src="./javascript/sell.js"></script>
   </head>
   <body onload="setupBlobstore()">
-    <h1>Post a listing</h1>
+    <h1>Post A Listing</h1>
 
     <form id="listing-form" method="POST" enctype="multipart/form-data">
       <label for="title">Title:</label>
       <input type="text" name="title" required /> 
       <br>
       <label for="price">Price:</label>
-      <input type="number" name="price" required /> 
+      <input type="number" name="price" size="1" required /> 
       <br>
       <label for="location">Location:</label>
-      <input id="location" placeholder="" type="text" name="location" required />
+      <input id="location" placeholder="" type="text" name="location" size="50" required />
       <br>
       <label for="image">Image:</label>
       <input type="file" name="image">
       <br>
       <label for="description">Description:</label>
-      <textarea type="text" name="description"></textarea>
+      <textarea type="text" name="description" cols="50" rows="3"></textarea>
       <br>
-      <button>Post</button>
+      <button class="btn">Post</button>
     </form>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3PvtE6_5v9QSRDNF0wm22TFSaiRNurmU&libraries=places&callback=initAutocomplete" async defer></script>
