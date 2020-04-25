@@ -2,6 +2,9 @@ package com.google.sps.servlets;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,14 +33,16 @@ public class LoginServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
 
-    if (username == email) {
-        system.out.println("Hello" + name);
-        response.sendRedirect("/index.html");
-    }
-    else {
-        system.out.println(Invalid user or password);
+    System.out.println("Hello" + username);
+    response.sendRedirect("/index.html");
+    // if (username == email) {
+    //     System.out.println("Hello" + username);
+    //     response.sendRedirect("/index.html");
+    // }
+    // else {
+    //     System.out.println("Invalid user or password");
 
-    }
+    // }
 
     }
 
