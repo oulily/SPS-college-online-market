@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
   @Override
@@ -24,17 +24,11 @@ public class LoginServlet extends HttpServlet {
     // Respond with the result.
     response.setContentType("text/html");
 
-    long timestamp = System.currentTimeMillis();
 
-    Entity taskEntity = new Entity("Task");
-    taskEntity.setProperty("username", username);
-    taskEntity.setProperty("timestamp", timestamp);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(taskEntity);
+   
 
     System.out.println("Hello" + username);
-    response.sendRedirect("/index.html");
+    response.sendRedirect("/home.html");
     // if (username == email) {
     //     System.out.println("Hello" + username);
     //     response.sendRedirect("/index.html");

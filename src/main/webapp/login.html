@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="login.css">
-        <script src="login.js"></script>
+        <link rel="stylesheet" href="./stylesheets/login.css">
+        <script src="login.js"> </script>
         
 </head>
 <body>
 
-<p> Login </p>
-
-<div id="id01" class="modal">
-
+<form action="/login" method = "POST" style="border:1px solid #ccc">
     <div class="container">
       <label for="uname"><b>Email Address</b></label>
       <input type="text" placeholder="Enter Email Address" name="uname" required>
@@ -33,7 +29,7 @@
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
-</div>
+
 
 
 </body>

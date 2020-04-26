@@ -2,16 +2,26 @@
 <html>
       
     <head>
-        <link rel="stylesheet" type="text/css" href="signup.css">
-        <script src="signup.js"> </script>
+        <link rel="stylesheet" type="text/css" href="./stylesheets/signup.css">
+        <script src="./javascript/signup.js"> </script>
         </head>
 <body>
 
-<form action="SignUpServlet" style="border:1px solid #ccc">
+<form action="/signup" method = "POST" style="border:1px solid #ccc">
   <div class="container">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
+
+
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+
+     <label for="university"><b>University</b></label>
+    <input type="text" placeholder="Enter University" name="university" required>
+
+     <label for="telephone"><b>Telephone</b></label>
+    <input type="text" placeholder="Enter Telephone Number" name="telephone" required> 
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
