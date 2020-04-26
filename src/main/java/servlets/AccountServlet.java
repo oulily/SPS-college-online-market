@@ -17,15 +17,7 @@ public class AccountServlet extends HttpServlet {
     response.setContentType("text/html");
 
 
-    //PrintWriter writer = response.getWriter();
-   // String htmlRespone = "<html>";
-     //   htmlRespone += "<h2> Hello " + name + "<br/>";
-      //  htmlRespone += "Your username is: " + email + "<br/>";      
-      //  htmlRespone += "Your password is: " + password + "</h2>";    
-      //  htmlRespone += "</html>";
-
-        // return response
-        //writer.println(htmlRespone);
+   
 
 
     UserService userService = UserServiceFactory.getUserService();
