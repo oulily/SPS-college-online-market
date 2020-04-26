@@ -29,7 +29,7 @@ public class SellServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
 
     // if (!userService.isUserLoggedIn()) {
-    //   response.sendRedirect("/");
+    //   response.sendRedirect("/login.html");
     //   return;
     // }
 
