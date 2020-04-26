@@ -1,5 +1,6 @@
 package com.google.sps.servlets;
 
+import static java.lang.System.out;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
@@ -32,23 +33,15 @@ public class SignUpServlet extends HttpServlet {
      user.setProperty("telephone", telephone);
      user.setProperty("email", email);
      user.setProperty("password", password);
-    List<Entity> userlist = Arrays.asList(name, university, telephone, email, password);
+    
+    
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     datastore.put(user);
 
 
-    PrintWriter writer = response.getWriter();
-    String htmlRespone = "<html>";
-        htmlRespone += "<h2> Hello " + name + "<br/>";
-        htmlRespone += "Your username is: " + email + "<br/>";      
-        htmlRespone += "Your password is: " + password + "</h2>";    
-        htmlRespone += "</html>";
-
-        // return response
-        writer.println(htmlRespone);
         
-        response.sendRedirect("/home.html");
+        response.sendRedirect("/account.html");
   }
 }
