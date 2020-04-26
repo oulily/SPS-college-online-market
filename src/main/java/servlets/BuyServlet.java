@@ -21,33 +21,47 @@ import javax.servlet.http.HttpServletResponse;
 public class BuyServlet extends HttpServlet {
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {    
+  public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException {    
     response.setContentType("text/html");
-    PrintWriter out = response.getWriter();
-    out.println("<h1>This is the buy page.</h1>");
-
-    out.println("<form action='/buy'>");
-    out.println("<div><h4 class='filter'>Filter by:</h4></div>");
-    out.println("<div><input type='checkbox'><label>School Supplies</label>");
-    out.println("<div><input type='checkbox'><label>Furniture</label>");
-    out.println("<div><input type='checkbox'><label>Miscellaneous</label>");
-    out.println("</form>");
+    final PrintWriter out = response.getWriter();
+    final String docType = "<!DOCTYPE html\n";
+         
+    out.println(docType +
+        "<html>\n" +
+          "<head>" +
+            "<title>Buy Page</title>" +
+            "<link rel='stylesheet' href='./stylesheets/buy.css'>" + 
+          "</head>\n" +
+          "<body" +
+            "<div style='text-align:center'>" +
+              "<h1 align = \"center\">What are you looking for?</h1>\n" +
+              "<form action='/buy'>" +
+                "<h4 class='filter'>Filter by:</h4>\n" +
+                "<input name='school_supplies' type='checkbox'><label>School Supplies</label>\n" +
+                "<input name='furniture' type='checkbox'><label>Furniture</label>\n" +
+                "<input name='miscellaneous' type='checkbox'><label>Miscellaneous</label>\n\n" +
+                "<input type='submit' value='Search'>\n" + 
+              "</form>" +
+            "</div>" +
+          "</body>" +
+        "</html>"
+    );
     
     // UserService userService = UserServiceFactory.getUserService();
     // if (userService.isUserLoggedIn())
     // else { String loginUrl = userService.createLoginURL...}
     
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Query query = new Query("Listing").addSort("timestamp", SortDirection.DESCENDING);
-    PreparedQuery results = datastore.prepare(query);
+    final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    final Query query = new Query("Listing").addSort("timestamp", SortDirection.DESCENDING);
+    final PreparedQuery results = datastore.prepare(query);
     
-    for (Entity entity : results.asIterable()) {
-      boolean sold = (boolean)entity.getProperty("sold");
-      Double price = (Double)entity.getProperty("price");
-      String image = (String)entity.getProperty("image");
-      long timestamp = (long)entity.getProperty("timestamp");
-      String title = (String)entity.getProperty("title");
-      String description = (String)entity.getProperty("description"); 
+    for (final Entity entity : results.asIterable()) {
+      final boolean sold = (boolean)entity.getProperty("sold");
+      final Double price = (Double)entity.getProperty("price");
+      final String image = (String)entity.getProperty("image");
+      final long timestamp = (long)entity.getProperty("timestamp");
+      final String title = (String)entity.getProperty("title");
+      final String description = (String)entity.getProperty("description"); 
       
       out.println("<div>");
       out.println("<p>Sold: " + sold + "</p>");
