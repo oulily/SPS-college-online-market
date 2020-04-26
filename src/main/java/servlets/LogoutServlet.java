@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -17,11 +17,11 @@ public class LoginServlet extends HttpServlet {
 
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
-      response.sendRedirect("/home.html");
-    } else {
-      String urlToRedirectToAfterUserLogsIn = "/home.html";
-      String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-      response.sendRedirect(loginUrl);
+      String userEmail = userService.getCurrentUser().getEmail();
+      String urlToRedirectToAfterUserLogsOut = "/";
+      String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
+
+      response.sendRedirect(logoutUrl);
     }
   }
 }
