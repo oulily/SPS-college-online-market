@@ -10,6 +10,7 @@ import com.google.appengine.api.datastore.Entity;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.*;
 
 @WebServlet("/signup")
 public class SignUpServlet extends HttpServlet {
@@ -21,27 +22,22 @@ public class SignUpServlet extends HttpServlet {
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       String name = request.getParameter("name");
-       String university = request.getParameter("university"); 
-       String telephone = request.getParameter("telephone");   
-       String email = request.getParameter("email");
-       String password = request.getParameter("password");
-
-     Entity user = new Entity("User");
-     user.setProperty ("name", name);
-     user.setProperty("university", university);
-     user.setProperty("telephone", telephone);
-     user.setProperty("email", email);
-     user.setProperty("password", password);
+    String name = request.getParameter("name");
+    String university = request.getParameter("university"); 
+    String telephone = request.getParameter("telephone");   
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
     
-    
+    Entity user = new Entity("User");
+    user.setProperty ("name", name);
+    user.setProperty("university", university);
+    user.setProperty("telephone", telephone);
+    user.setProperty("email", email);
+    user.setProperty("password", password);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
     datastore.put(user);
-
-
-        
-        response.sendRedirect("/account.html");
+    
+    response.sendRedirect("/account.html");
   }
 }
