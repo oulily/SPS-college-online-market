@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="./stylesheets/login.css">
+        <script src="login.js"> </script>
+        
 </head>
 <body>
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
-<div id="id01" class="modal">
-
+<form action="/login" method = "POST" style="border:1px solid #ccc">
     <div class="container">
       <label for="uname"><b>Email Address</b></label>
       <input type="text" placeholder="Enter Email Address" name="uname" required>
@@ -17,7 +16,9 @@
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
         
-      <button type="submit">Login</button>
+      <button type="submit">
+          <a href="/home.html" class="btn">Login
+          </a> </button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
@@ -28,7 +29,7 @@
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
-</div>
+
 
 
 </body>
