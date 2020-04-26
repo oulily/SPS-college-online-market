@@ -22,6 +22,7 @@ public class SignUpServlet extends HttpServlet {
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+<<<<<<< HEAD
        String name = request.getParameter("name");
        String university = request.getParameter("university"); 
        String telephone = request.getParameter("telephone");   
@@ -34,18 +35,23 @@ public class SignUpServlet extends HttpServlet {
      user.setProperty("telephone", telephone);
      user.setProperty("email", email);
      user.setProperty("password", password);
-<<<<<<< HEAD
+
+    String name = request.getParameter("name");
+    String university = request.getParameter("university"); 
+    String telephone = request.getParameter("telephone");   
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
     
-    
-=======
->>>>>>> 8b1d8ad8d3d228897cfb9f65a8af91727f3ac9ff
+    Entity user = new Entity("User");
+    user.setProperty ("name", name);
+    user.setProperty("university", university);
+    user.setProperty("telephone", telephone);
+    user.setProperty("email", email);
+    user.setProperty("password", password);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
     datastore.put(user);
-
-
-        
-        response.sendRedirect("/account.html");
+    
+    response.sendRedirect("/account.html");
   }
 }
