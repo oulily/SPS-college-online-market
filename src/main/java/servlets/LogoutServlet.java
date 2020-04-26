@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/account")
-public class AccountServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -18,10 +18,10 @@ public class AccountServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
       String userEmail = userService.getCurrentUser().getEmail();
-      response.getWriter().println("<p>Hello " + userEmail + "!</p>");
-    } else {
-      response.sendRedirect("/login");
+      String urlToRedirectToAfterUserLogsOut = "/";
+      String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
+
+      response.sendRedirect(logoutUrl);
     }
   }
 }
-
