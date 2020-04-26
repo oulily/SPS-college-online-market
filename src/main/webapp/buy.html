@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Buy Page</title>
-      <link rel='stylesheet' href='./stylesheets/buy.css'>
-    </head>
-    <body">
-        <div style='text-align:center'>
-            <h1>What are you looking for?</h1>
-            <form action='/buy.html'>
-                <h4 class='filter'>Filter by:</h4>
-                <input name='school_supplies' type='checkbox'><label>School Supplies</label>
-                <input name='furniture' type='checkbox'><label>Furniture</label>
-                <input name='miscellaneous' type='checkbox'><label>Miscellaneous</label>
-                <input type='submit' value='Search'> 
-            </form>
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Buy Page</title>
+    <link rel="stylesheet" href="./stylesheets/buy.css">
+    <script src="./javascript/sell.js"></script>
+  </head>
+  <body>
+    <div>
+        <ul class="list">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/buy.html">Buy</a></li>
+            <li><a href="/sell.html">Sell</a></li>
+            <li><a href="/account.html">Account</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <br/><br/>
+    <h1>What are you looking for?</h1>
+    <form action='/buy'>
+        <h4 class='filter'>Filter by:</h4><br/>
+        <input name='school_supplies' type='checkbox'><label>School Supplies</label>
+        <input name='furniture' type='checkbox'><label>Furniture</label>
+        <input name='miscellaneous' type='checkbox'><label>Miscellaneous</label>
+        <input type='submit' value='Search'> 
+    </form>
+  </body>
 </html>

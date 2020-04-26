@@ -24,32 +24,6 @@ public class BuyServlet extends HttpServlet {
   public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException {    
     response.setContentType("text/html");
     final PrintWriter out = response.getWriter();
-    final String docType = "<!DOCTYPE html\n";
-         
-    out.println(docType +
-        "<html>\n" +
-          "<head>" +
-            "<title>Buy Page</title>" +
-            "<link rel='stylesheet' href='./stylesheets/buy.css'>" + 
-          "</head>\n" +
-          "<body" +
-            "<div style='text-align:center'>" +
-              "<h1 align = \"center\">What are you looking for?</h1>\n" +
-              "<form action='/buy'>" +
-                "<h4 class='filter'>Filter by:</h4>\n" +
-                "<input name='school_supplies' type='checkbox'><label>School Supplies</label>\n" +
-                "<input name='furniture' type='checkbox'><label>Furniture</label>\n" +
-                "<input name='miscellaneous' type='checkbox'><label>Miscellaneous</label>\n\n" +
-                "<input type='submit' value='Search'>\n" + 
-              "</form>" +
-            "</div>" +
-          "</body>" +
-        "</html>"
-    );
-    
-    // UserService userService = UserServiceFactory.getUserService();
-    // if (userService.isUserLoggedIn())
-    // else { String loginUrl = userService.createLoginURL...}
     
     final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     final Query query = new Query("Listing").addSort("timestamp", SortDirection.DESCENDING);
@@ -72,5 +46,8 @@ public class BuyServlet extends HttpServlet {
       out.println("<p>Description: " + description + "</p>");
       out.println("</div>");
     }
+
+    response.sendRedirect("/buy.html");
   }
+  
 } 
