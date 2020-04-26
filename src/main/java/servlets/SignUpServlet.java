@@ -10,6 +10,7 @@ import com.google.appengine.api.datastore.Entity;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.*;
 
 @WebServlet("/signup")
 public class SignUpServlet extends HttpServlet {
@@ -33,8 +34,11 @@ public class SignUpServlet extends HttpServlet {
      user.setProperty("telephone", telephone);
      user.setProperty("email", email);
      user.setProperty("password", password);
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> 8b1d8ad8d3d228897cfb9f65a8af91727f3ac9ff
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
