@@ -20,7 +20,7 @@ public class AccountServlet extends HttpServlet {
       String userEmail = userService.getCurrentUser().getEmail();
       response.getWriter().println("<p>Hello " + userEmail + "!</p>");
     } else {
-      response.sendRedirect("/login");
+      response.sendRedirect("/login.html");
     }
   }
 }
