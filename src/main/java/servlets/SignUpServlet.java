@@ -1,5 +1,6 @@
 package com.google.sps.servlets;
 
+import static java.lang.System.out;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
@@ -21,34 +22,22 @@ public class SignUpServlet extends HttpServlet {
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       String name = request.getParameter("name");
-       String university = request.getParameter("university"); 
-       String telephone = request.getParameter("telephone");   
-       String email = request.getParameter("email");
-       String password = request.getParameter("password");
-
-     Entity user = new Entity("User");
-     user.setProperty ("name", name);
-     user.setProperty("university", university);
-     user.setProperty("telephone", telephone);
-     user.setProperty("email", email);
-     user.setProperty("password", password);
+    String name = request.getParameter("name");
+    String university = request.getParameter("university"); 
+    String telephone = request.getParameter("telephone");   
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    
+    Entity user = new Entity("User");
+    user.setProperty ("name", name);
+    user.setProperty("university", university);
+    user.setProperty("telephone", telephone);
+    user.setProperty("email", email);
+    user.setProperty("password", password);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
     datastore.put(user);
-
-
-    PrintWriter writer = response.getWriter();
-    String htmlRespone = "<html>";
-        htmlRespone += "<h2> Hello " + name + "<br/>";
-        htmlRespone += "Your username is: " + email + "<br/>";      
-        htmlRespone += "Your password is: " + password + "</h2>";    
-        htmlRespone += "</html>";
-
-        // return response
-        writer.println(htmlRespone);
-        
-        response.sendRedirect("/home.html");
+    
+    response.sendRedirect("/account.html");
   }
 }

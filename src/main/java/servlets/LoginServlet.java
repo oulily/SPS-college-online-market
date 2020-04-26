@@ -15,15 +15,6 @@ public class LoginServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html");
 
-    // if (username == email) {
-    //     System.out.println("Hello" + username);
-    //     response.sendRedirect("/index.html");
-    // }
-    // else {
-    //     System.out.println("Invalid user or password");
-
-    // }
-
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
       response.sendRedirect("/home.html");
