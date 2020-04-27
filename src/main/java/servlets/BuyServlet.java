@@ -24,9 +24,6 @@ public class BuyServlet extends HttpServlet {
 
   @Override
   public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException {    
-    // response.setContentType("text/html");
-    // final PrintWriter out = response.getWriter();
-    
     final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     final Query query = new Query("Listing").addSort("timestamp", SortDirection.DESCENDING);
     final PreparedQuery results = datastore.prepare(query);
@@ -41,14 +38,6 @@ public class BuyServlet extends HttpServlet {
       final String description = (String)entity.getProperty("description"); 
       
       listings.add(entity);
-    //   out.println("<div>");
-    //   out.println("<p>Sold: " + sold + "</p>");
-    //   out.println("<p>Price: " + price + "</p>");
-    //   out.println("<p>Image: " + image + "</p>");
-    //   out.println("<p>Timestamp: " + timestamp + "</p>");
-    //   out.println("<p>Title: " + title + "</p>");
-    //   out.println("<p>Description: " + description + "</p>");
-    //   out.println("</div>");
     }
 
     Gson gson = new Gson();
