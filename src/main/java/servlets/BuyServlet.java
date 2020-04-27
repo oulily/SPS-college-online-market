@@ -8,8 +8,10 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
@@ -22,13 +24,14 @@ public class BuyServlet extends HttpServlet {
 
   @Override
   public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException {    
-    response.setContentType("text/html");
-    final PrintWriter out = response.getWriter();
+    // response.setContentType("text/html");
+    // final PrintWriter out = response.getWriter();
     
     final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     final Query query = new Query("Listing").addSort("timestamp", SortDirection.DESCENDING);
     final PreparedQuery results = datastore.prepare(query);
     
+    List<Entity> listings = new ArrayList<>();
     for (final Entity entity : results.asIterable()) {
       final boolean sold = (boolean)entity.getProperty("sold");
       final Double price = (Double)entity.getProperty("price");
@@ -37,17 +40,21 @@ public class BuyServlet extends HttpServlet {
       final String title = (String)entity.getProperty("title");
       final String description = (String)entity.getProperty("description"); 
       
-      out.println("<div>");
-      out.println("<p>Sold: " + sold + "</p>");
-      out.println("<p>Price: " + price + "</p>");
-      out.println("<p>Image: " + image + "</p>");
-      out.println("<p>Timestamp: " + timestamp + "</p>");
-      out.println("<p>Title: " + title + "</p>");
-      out.println("<p>Description: " + description + "</p>");
-      out.println("</div>");
+      listings.add(entity);
+    //   out.println("<div>");
+    //   out.println("<p>Sold: " + sold + "</p>");
+    //   out.println("<p>Price: " + price + "</p>");
+    //   out.println("<p>Image: " + image + "</p>");
+    //   out.println("<p>Timestamp: " + timestamp + "</p>");
+    //   out.println("<p>Title: " + title + "</p>");
+    //   out.println("<p>Description: " + description + "</p>");
+    //   out.println("</div>");
     }
 
-    response.sendRedirect("/buy.html");
+    Gson gson = new Gson();
+    
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(listings));
   }
   
 } 

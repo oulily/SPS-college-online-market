@@ -54,7 +54,7 @@ public class SellServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(listing);
-    response.sendRedirect("/home.html");
+    response.sendRedirect("/buy.html");
   }
 
   private String getUploadedFileUrl(HttpServletRequest request, String formInputElementName) {
