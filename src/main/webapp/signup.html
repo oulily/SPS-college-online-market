@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="./stylesheets/signup.css">
         <script src="./javascript/signup.js"> </script>
         </head>
-<body onload = getList()>
+<body>
 
 <form action="/signup" method = "POST" style="border:1px solid #ccc">
   <div class="container">
@@ -40,7 +40,7 @@
     <div class="clearfix">
       <button type="button" class="loginbtn"> <a href="/login.html" class="btn">Already have an account
           </a> </button>
-      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="button" class="cancelbtn"> <a href="/index.html" class="btn"> Cancel </a></button>
       <button onclick = "getDataServlet()" type="submit" class="signupbtn">Sign Up</button>
     </div>
   </div>
