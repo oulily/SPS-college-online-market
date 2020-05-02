@@ -41,6 +41,7 @@ public class SellServlet extends HttpServlet {
     String title = request.getParameter("title");
     String description = request.getParameter("description");
     // String userId = userService.getCurrentUser().getUserId();
+    // String userEmail = userService.getCurrentUser().getEmail();
 
     Entity listing = new Entity("Listing");
     listing.setProperty("sold", sold);
@@ -51,6 +52,7 @@ public class SellServlet extends HttpServlet {
     listing.setProperty("title", title);
     listing.setProperty("description", description);
     // listing.setProperty("userId", userId);
+    // listing.setProperty("userEmail", userEmail);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(listing);
