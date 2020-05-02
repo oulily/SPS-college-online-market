@@ -19,14 +19,14 @@ public class AccountServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-   // response.setContentType("text/html");
-    //response.getWriter().println("<h1>This is the account page.</h1>");
+    response.setContentType("text/html");
+    response.getWriter().println("<h1>This is the account page.</h1>");
     try {
-    handleRequest(request, response);
+        handleRequest(request, response);
     } catch(Exception e) {
         out.println(e.getMessage());
     }
-  }
+   }
 
   public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
  
@@ -42,5 +42,5 @@ public class AccountServlet extends HttpServlet {
         htmlRespone.write("Your username is: " + email + "<br/>");       
         htmlRespone.write("</html>");
         htmlRespone.close();
-}
+  }
 }
