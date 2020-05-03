@@ -34,6 +34,7 @@ public class AccountServlet extends HttpServlet {
     HttpSession session=request.getSession(false);  
     String name=(String)session.getAttribute("name");  
     String email=(String)session.getAttribute("email"); 
+    
 
     PrintWriter htmlRespone = response.getWriter();
         htmlRespone.write("<html>");
