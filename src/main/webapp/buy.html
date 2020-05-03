@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Buy Page</title>
     <link rel="stylesheet" href="./stylesheets/buy.css">
-    <script src="./javascript/sell.js"></script>
+    <script src="./javascript/buy.js"></script>
   </head>
-  <body>
+  <body onload="getListings()">
     <div>
         <ul class="list">
             <li><a href="/home.html">Home</a></li>
@@ -25,5 +25,8 @@
         <input name='miscellaneous' type='checkbox'><label>Miscellaneous</label>
         <input type='submit' value='Search'> 
     </form>
+    <div id="listing-container"></div>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7cXH7v1EI0SpDuI-_Bcf5_Z4QtwzbtKg"async defer></script>
   </body>
 </html>
